@@ -60,7 +60,7 @@ scaler = StandardScaler()
 #check_array has a default argument of ensure_2d=True. Only works when ensure_2d = False. How to set default argument? in this script rather than changing the package?
 
 for col in features_non_numeric:
-    scaler.fit(list(train[col])+list(test[col]))
+    scaler.fit((list(train[col])+list(test[col])).reshape(-1, 1))
     train[col] = scaler.transform(train[col])
     test[col] = scaler.transform(test[col])
 
