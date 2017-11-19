@@ -9,8 +9,9 @@ https://www.kaggle.com/c/titanic
 
 ## Shelter Animal Outcomes
 https://www.kaggle.com/c/shelter-animal-outcomes
-- v1: Random Forest. Accuracy Score = 0.80789
-- v2: XGBoost.
+- v1: Random Forest. Accuracy Score = 0.8079
+- v2: XGBoost. Accuracy Score = 0.8193
+- v3:
 
 ## Homesite Quote Conversion
 https://www.kaggle.com/c/homesite-quote-conversion

@@ -93,6 +93,6 @@ if __name__ == "__main__":
 
     print(output)
 
-    output.to_csv('result/predictions.csv')
+    output.to_csv('result/predictions_v1.csv')
 
     print("Done.\n")
