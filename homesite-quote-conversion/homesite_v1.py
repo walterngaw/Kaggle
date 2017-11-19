@@ -32,7 +32,6 @@ def load_data():
     features = test.columns.tolist()
     return train, test, features
 
-
 def process_data(train, test, features):
     """
         Feature engineering and selection.
