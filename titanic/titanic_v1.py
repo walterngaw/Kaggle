@@ -59,27 +59,28 @@ scaler = StandardScaler()
 #standardScaler.transform (file location: sklearn.preprocessing.data.py) --> uses --> check_array (file location: sklearn.utils.valudation.py)
 #check_array has a default argument of ensure_2d=True. Only works when ensure_2d = False. How to set default argument? in this script rather than changing the package?
 
-for col in features_non_numeric:
-    scaler.fit((list(train[col])+list(test[col])).reshape(-1, 1))
-    train[col] = scaler.transform(train[col])
-    test[col] = scaler.transform(test[col])
+# for col in features_non_numeric:
+#     # scaler.fit((list(train[col])+list(test[col])).reshape(-1, 1))
+#     scaler.fit(list(train[col])+list(test[col])
+#     train[col] = scaler.transform(train[col])
+#     test[col] = scaler.transform(test[col])
 
 classifiers = [
-    xgb.XGBClassifier(gamma=10,max_depth=100,n_estimators=50000),
-    Classifier(
-        layers=[
-            Layer("Tanh", units=200),
-            Layer("Sigmoid", units=200),
-            Layer('Rectifier', units=200),
-            Layer('Softmax')],
-        learning_rate=0.05,
-        learning_rule='sgd',
-        learning_momentum=0.5,
-        batch_size=100,
-        valid_size=0.05,
-        n_stable=100,
-        n_iter=100,
-        verbose=True)
+    xgb.XGBClassifier(gamma=10,max_depth=100,n_estimators=50000)
+    # ,Classifier(
+    #     layers=[
+    #         Layer("Tanh", units=200),
+    #         Layer("Sigmoid", units=200),
+    #         Layer('Rectifier', units=200),
+    #         Layer('Softmax')],
+    #     learning_rate=0.05,
+    #     learning_rule='sgd',
+    #     learning_momentum=0.5,
+    #     batch_size=100,
+    #     valid_size=0.05,
+    #     n_stable=100,
+    #     n_iter=100,
+    #     verbose=True)
 ]
 
 # Train

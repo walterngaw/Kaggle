@@ -28,7 +28,7 @@ def load_data():
     """
         Load data and specified features of the data sets
     """
-    train, test = utils.read_csv_files('./data/train1000.csv', './data/test1000.csv')
+    train, test = utils.read_csv_files('./data/train.csv', './data/test.csv')
     features = test.columns.tolist()
     return train, test, features
 
@@ -115,11 +115,11 @@ def process_data(train, test, features):
             train[f] = lbl.transform(list(train[f].values))
             test[f] = lbl.transform(list(test[f].values))
     # Scale features
-    scaler = StandardScaler()
-    for col in ['Field8', 'Field9', 'Field10', 'Field11', 'SalesField8']:  # need to be scaled
-        scaler.fit(np.reshape((list(train[col])+list(test[col])), (-1, 1))
-        train[col] = scaler.transform(np.reshape(train[col], (-1,1)))
-        test[col] = scaler.transform(np.reshape(test[col], (-1,1)))
+    # scaler = StandardScaler()
+    # for col in ['Field8', 'Field9', 'Field10', 'Field11', 'SalesField8']:  # need to be scaled
+    #     scaler.fit(np.reshape((list(train[col])+list(test[col])), (-1, 1))
+    #     train[col] = scaler.transform(np.reshape(train[col], (-1,1)))
+    #     test[col] = scaler.transform(np.reshape(test[col], (-1,1)))
 
     return (train, test, features)
 

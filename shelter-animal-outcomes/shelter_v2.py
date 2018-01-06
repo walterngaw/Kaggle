@@ -22,20 +22,17 @@ train = train.drop('OutcomeType',axis=1)
 train = train.drop('OutcomeSubtype',axis=1)
 
 train['ColorCount'] = train['Color'].apply(lambda x: len(x.split('/')))
-test['ColorCount'] = test['Color'].apply(lambda x: len(x.split('/')))
 train['MixOrNot'] = train['Breed'].apply(lambda x: 'Mix' in x)
-test['MixOrNot'] = test['Breed'].apply(lambda x: 'Mix' in x)
 train['BreedCount'] = train['Breed'].apply(lambda x: len(x.split('/')))
-test['BreedCount'] = test['Breed'].apply(lambda x: len(x.split('/')))
 train['SexPrefix'] = train['SexuponOutcome'].apply(lambda x: x.split(' ')[0])
-test['SexPrefix'] = test['SexuponOutcome'].apply(lambda x: x.split(' ')[0])
-
-
 train['DateTime_dayofweek'] = train['DateTime'].dt.dayofweek
 train['DateTime_dayofyear'] = train['DateTime'].dt.dayofyear
 train['DateTime_days_in_month'] = train['DateTime'].dt.days_in_month
 
-
+test['ColorCount'] = test['Color'].apply(lambda x: len(x.split('/')))
+test['MixOrNot'] = test['Breed'].apply(lambda x: 'Mix' in x)
+test['BreedCount'] = test['Breed'].apply(lambda x: len(x.split('/')))
+test['SexPrefix'] = test['SexuponOutcome'].apply(lambda x: x.split(' ')[0])
 test['DateTime_dayofweek'] = test['DateTime'].dt.dayofweek
 test['DateTime_dayofyear'] = test['DateTime'].dt.dayofyear
 test['DateTime_days_in_month'] = test['DateTime'].dt.days_in_month
@@ -79,7 +76,7 @@ def make_mf_classifier(X ,y, clf, X_test,n_folds=2, n_round=5):
         for ind_tr, ind_te in skf:
             X_tr = X[ind_tr]
             X_te = X[ind_te]
-            
+
             y_tr = y[ind_tr]
             y_te = y[ind_te]
             clf.fit(X_tr, y_tr)
@@ -121,7 +118,7 @@ skf = StratifiedKFold(y, n_folds=5, shuffle=True, random_state=seed)
 for ind_tr, ind_te in skf:
     X_train = X[ind_tr]
     X_test = X[ind_te]
-    
+
     y_train = y[ind_tr]
     y_test = y[ind_te]
     break
@@ -130,17 +127,17 @@ print(X_train.shape,X_test.shape)
 
 
 xgboost = xgb.XGBClassifier(
-        n_estimators=1000, 
-        learning_rate = 0.03, 
-        max_depth=6, 
-        subsample=0.7, 
-        colsample_bytree = 0.7, 
-        # gamma = 0.7, 
-        # max_delta_step=0.1, 
-        reg_lambda = 4, 
-        # min_child_weight=50, 
-        seed = seed, 
-        ) 
+        n_estimators=1000,
+        learning_rate = 0.03,
+        max_depth=6,
+        subsample=0.7,
+        colsample_bytree = 0.7,
+        # gamma = 0.7,
+        # max_delta_step=0.1,
+        reg_lambda = 4,
+        # min_child_weight=50,
+        seed = seed,
+        )
 
 xgboost.fit(
     X_train,
